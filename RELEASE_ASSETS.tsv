@@ -1,0 +1,5 @@
+asset_name	original_path	asset_bytes	asset_sha256	original_sha256	mode
+Jev-Style-2B-Decision-v4-F16.gguf.part-aa	Jev-Style-2B-Decision-v4-F16.gguf	1992294400	6b64871deb5629769d771b0e1da65698dc62b9d0777d79a5269646f794b51543	4a46e4a6c349895cda35d74ff50ba02dd1f292e74fe2ed8627a6fda08a45b93d	split
+Jev-Style-2B-Decision-v4-F16.gguf.part-ab	Jev-Style-2B-Decision-v4-F16.gguf	1783414240	96ad77121fbefc40af6c940927b8714cd91cb785999ff223f1ff8404c2300f21	4a46e4a6c349895cda35d74ff50ba02dd1f292e74fe2ed8627a6fda08a45b93d	split
+Jev-Style-2B-Decision-v4-Q4_K_M.gguf	Jev-Style-2B-Decision-v4-Q4_K_M.gguf	1274396128	01a0fd7feb3d456503965ac6058180e8004e3cb71a17907f3f05d80abbe50c5e	01a0fd7feb3d456503965ac6058180e8004e3cb71a17907f3f05d80abbe50c5e	whole
+Jev-Style-2B-Decision-v4-Q8_0.gguf	Jev-Style-2B-Decision-v4-Q8_0.gguf	2012012000	a7090ee8be312205a7f98236a12be9b94362e89c004ce7d01d3507fe82179847	a7090ee8be312205a7f98236a12be9b94362e89c004ce7d01d3507fe82179847	whole

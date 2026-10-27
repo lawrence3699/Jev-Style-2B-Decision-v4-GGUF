@@ -1,0 +1,55 @@
+{
+ "created_by": "scripts/formats/make_fixtures.py",
+ "seed": "jev-v4-formats-2026-10-28",
+ "renderer": "macjev RendererV2 (macjev-render-v2-long-options, layout sb, total 32,768)",
+ "gate_fixture_n1000.jsonl": {
+  "sha256": "0b497f05d34500a2b1244147d553716c4db8ce0dbcdf5f5067bf2319204a9345",
+  "requests": 1000,
+  "questions": 1000,
+  "tokens": 516376,
+  "max_tokens": 3942,
+  "catalogue_overflow": 0,
+  "max_options": 151,
+  "qtypes": {
+   "choice": 645,
+   "noul": 316,
+   "score": 39
+  }
+ },
+ "base_fixture.jsonl": {
+  "sha256": "e3ba04f6f3f62b6b29fa380c7fb3463cdd28e7652f988433e182e2cb5b4c9488",
+  "requests": 70,
+  "questions": 97,
+  "tokens": 1383602,
+  "max_tokens": 32768,
+  "catalogue_overflow": 15,
+  "max_options": 255,
+  "qtypes": {
+   "choice": 71,
+   "noul": 24,
+   "score": 2
+  },
+  "kinds": {
+   "dev_long": 60,
+   "edge": 10
+  },
+  "edge": [
+   "k255_catalogue",
+   "question_block_2048",
+   "question_block_2049_catalogue",
+   "state_2048",
+   "state_2049",
+   "total_32768",
+   "five_shapes_one_state",
+   "special_tokens_text",
+   "empty_state",
+   "json_state"
+  ]
+ },
+ "source_rows": {
+  "what": "our own held-out development rows of the v4 data generators and ingesters (text rows; never Decision Index suite rows)",
+  "text_rows": 2530,
+  "sha256": "a1563e2a27cc0183c78c5bb01a6fa44ff2e7e49362dbfbcab4fadfe5c1446f6c",
+  "rows_over_32768_skipped": 5
+ }
+}

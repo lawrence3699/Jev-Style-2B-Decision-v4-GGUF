@@ -1,0 +1,18 @@
+{
+ "what": "Render check for the v4 GGUF / MLX runtimes (2026-10-28; tokenisation only, no model): the runtimes' own renderer\n(shared core: ``tokenizers`` + readout_config.json) must give exactly the token ids, attention blocks, slots, state\nlength, option names and catalogue flag of the reference renderer (macjev RendererV2 with the transformers\ntokenizer of the main repository) on every question of both fixtures, and score_many's shared-prefix rendering must\nequal rendering each question alone.",
+ "runtime_sha256": "f82bdf627485af120f4fba4a705ed611b0313b03226c63aa4cc9eed9522a6a21",
+ "fixtures": {
+  "gate_fixture_n1000.jsonl": {
+   "questions": 1000,
+   "tokens": 516376
+  },
+  "base_fixture.jsonl": {
+   "questions": 97,
+   "tokens": 1383602
+  }
+ },
+ "mismatches": [],
+ "ok": true,
+ "seconds": 8.8,
+ "note": "runtime_sha256 is jev_style_decision_gguf.py; jev_style_decision_mlx.py contains the same shared core (rendering, readout, calibration, budgets, CLI) byte for byte (scripts/formats/build_runtimes.py asserts it)"
+}

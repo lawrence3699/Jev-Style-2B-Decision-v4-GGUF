@@ -1,0 +1,4 @@
+# tested with: python 3.12.3, tokenizers 0.23.3, numpy 2.5.4, llama.cpp 441df11f65ea0b6d0c72965aaf70c8241070ddcb (Linux, CUDA)
+# plus the jev-score-v2 binary: sh build_jev_score.sh /path/to/llama.cpp
+tokenizers==0.23.3
+numpy==2.5.4

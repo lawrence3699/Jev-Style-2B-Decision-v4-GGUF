@@ -1,0 +1,488 @@
+{
+ "format": "jev-style-release-v1",
+ "model_name": "Jev-Style-2B-Decision-v4",
+ "repo": "chaoliangUNSW/Jev-Style-2B-Decision-v4-GGUF",
+ "generation": "v4 (fourth generation of the Jev-Style decision series)",
+ "lineage": {
+  "v1": "chaoliangUNSW/Jev-Style-Qwen3.5-2B-Decision",
+  "v1_public_gguf": "chaoliangUNSW/Jev-Style-Qwen3.5-2B-Decision-GGUF",
+  "v2": "chaoliangUNSW/Jev-Style-Qwen3.5-2B-Decision-v2",
+  "v3_0.8b": "chaoliangUNSW/Jev-Style-0.8B-Decision-v3",
+  "v3_2b": "chaoliangUNSW/Jev-Style-2B-Decision-v3",
+  "v4_2b": "chaoliangUNSW/Jev-Style-2B-Decision-v4"
+ },
+ "base_model": "Qwen/Qwen3.5-2B",
+ "base_model_revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+ "base_model_relation": "finetune",
+ "converted_from": {
+  "repo": "chaoliangUNSW/Jev-Style-2B-Decision-v4",
+  "revision": "3f2c063f7d94cfa281b9fee87a5b89bed6745506",
+  "what": "the language model of the released checkpoint (the vision tower is not part of these files)"
+ },
+ "architecture": "Qwen3_5ForCausalLM, text only: the language model of the released Qwen3_5ForConditionalGeneration (24 layers: 18 Gated DeltaNet + 6 full attention, hidden 2048, tied embeddings, 1,881,825,088 parameters)",
+ "inputs": "text and JSON states only; images need the main repository's PyTorch runtime",
+ "readout": "verdict",
+ "template": "macjev-render-v2-long-options",
+ "layout": "sb",
+ "attention": "block-causal in the 6 full-attention layers: the input is cut into [start, stop) blocks of at most block_size tokens (state blocks; one short question block, or catalogue blocks + rubric blocks when question + options + slots exceed block_size); every block attends to all earlier tokens and to itself with no causal mask inside the block. Gated-DeltaNet layers are ordinary recurrent layers.",
+ "readout_config": "readout_config.json",
+ "budgets": {
+  "max_len": 32768,
+  "question_option_limit": null,
+  "block_size": 2048,
+  "max_options": 255
+ },
+ "calibration": {
+  "version": "macjev-temperature-v3-qtype",
+  "by_qtype": {
+   "choice": 0.7698498587261627,
+   "noul": 0.824717362670051,
+   "score": 0.583566330184863
+  },
+  "global_T": 0.7734836880351792,
+  "n_rows": 3325,
+  "cal_ids_sha256": "757ebf267d11288f2b602295a8f13f47d2eb32d598c646df9a1cf210f3f5a717",
+  "two_fold_heldout_nll": {
+   "global": 0.2469615557272353,
+   "per_qtype": 0.2459016209570835
+  },
+  "fit_quality": {
+   "nll_before": 0.2618054844276844,
+   "nll_after": 0.24572888908038026,
+   "ece_before": 0.0494947223980491,
+   "ece_after": 0.02079632343761453,
+   "accuracy": 0.9154887218045112,
+   "n": 3325
+  },
+  "fitted_on": "3,325 held-out calibration rows (not training, not dev rows)"
+ },
+ "source": {
+  "text_only_export": {
+   "script": "scripts/formats/make_text_only.py (renames model.language_model.* -> model.*, drops model.visual.*; same tensors, bf16)",
+   "files": {
+    "chat_template.jinja": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+    "config.json": "88bf86c270d616198909ed1eefef8d8c21ac1fa13f62e947f20f8e1ebd02c211",
+    "generation_config.json": "62153eb6c69f2e1f426beaa8002b7186437e949c7588167085df14e10e9c0a73",
+    "model.safetensors": "484e745af620e609b723d74a997126b360f0bdd622aefc0509a72838d38274df",
+    "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "tokenizer_config.json": "bee8eba30f0eb4af73c0fe2cd06d0f89b657d7819941c438157ec42f7c80ea87"
+   },
+   "source_shards_sha256": {
+    "model-00001-of-00003.safetensors": "05b29c40bc19ad741b0d7f9aafc220595dad7c87fc735e9bd3ae8d14cb83d909",
+    "model-00002-of-00003.safetensors": "fc286df6de47b67637a968f31f5f78948a125c06708f85ed4ac1491b99e9d494",
+    "model-00003-of-00003.safetensors": "0ba7bf9c4224f44a2745f58f75634f3cebdf2432cbd0546f5ef97becd8ab5496"
+   },
+   "reproduced": "byte-identical on the Mac and on the Colab VM (model.safetensors sha256 above)"
+  }
+ },
+ "related_repos": {
+  "main": "chaoliangUNSW/Jev-Style-2B-Decision-v4",
+  "gguf": "chaoliangUNSW/Jev-Style-2B-Decision-v4-GGUF",
+  "mlx": "chaoliangUNSW/Jev-Style-2B-Decision-v4-MLX"
+ },
+ "results": "benchmark results are on the main model card; they were measured with the main repository's PyTorch runtime, which these files reproduce within format_gates below",
+ "tested_with": {
+  "python": "3.12.3",
+  "tokenizers": "0.23.3",
+  "numpy": "2.5.4",
+  "llama.cpp": "441df11f65ea0b6d0c72965aaf70c8241070ddcb",
+  "cuda": "13.0 (nvcc), driver 580.82",
+  "gpu": "NVIDIA L4 (Colab)",
+  "torch (reference only)": "2.14.1",
+  "transformers (reference only)": "5.17.0"
+ },
+ "weights": {
+  "Jev-Style-2B-Decision-v4-F16.gguf": {
+   "quant": "F16",
+   "bytes": 3775708640,
+   "sha256": "4a46e4a6c349895cda35d74ff50ba02dd1f292e74fe2ed8627a6fda08a45b93d",
+   "gguf_metadata": {
+    "general.architecture": "qwen35",
+    "general.name": "Jev-Style-2B-Decision-v4",
+    "qwen35.block_count": 24,
+    "qwen35.embedding_length": 2048,
+    "general.file_type": 1
+   }
+  },
+  "Jev-Style-2B-Decision-v4-Q8_0.gguf": {
+   "quant": "Q8_0",
+   "bytes": 2012012000,
+   "sha256": "a7090ee8be312205a7f98236a12be9b94362e89c004ce7d01d3507fe82179847",
+   "gguf_metadata": {
+    "general.architecture": "qwen35",
+    "general.name": "Jev-Style-2B-Decision-v4",
+    "qwen35.block_count": 24,
+    "qwen35.embedding_length": 2048,
+    "general.file_type": 7
+   }
+  },
+  "Jev-Style-2B-Decision-v4-Q4_K_M.gguf": {
+   "quant": "Q4_K_M",
+   "bytes": 1274396128,
+   "sha256": "01a0fd7feb3d456503965ac6058180e8004e3cb71a17907f3f05d80abbe50c5e",
+   "gguf_metadata": {
+    "general.architecture": "qwen35",
+    "general.name": "Jev-Style-2B-Decision-v4",
+    "qwen35.block_count": 24,
+    "qwen35.embedding_length": 2048,
+    "general.file_type": 15
+   }
+  }
+ },
+ "conversion": {
+  "recipe": "1 (pre-declared primary: stock converter and llama-quantize defaults)",
+  "llama_cpp_commit": "441df11f65ea0b6d0c72965aaf70c8241070ddcb",
+  "commands": [
+   "python convert_hf_to_gguf.py <text-only export> --no-mtp --outtype f16 --model-name Jev-Style-2B-Decision-v4 --outfile Jev-Style-2B-Decision-v4-F16.gguf",
+   "llama-quantize Jev-Style-2B-Decision-v4-F16.gguf Jev-Style-2B-Decision-v4-Q8_0.gguf Q8_0",
+   "llama-quantize Jev-Style-2B-Decision-v4-F16.gguf Jev-Style-2B-Decision-v4-Q4_K_M.gguf Q4_K_M"
+  ],
+  "built_on": "Colab VM (Linux x86_64, NVIDIA L4, CUDA 13.0, -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=89)"
+ },
+ "runtime": {
+  "script": "jev_style_decision_gguf.py",
+  "class": "JevStyleDecisionGGUF",
+  "engine": "jev-score-v2 (jev_score_v2.cpp, stock libllama; NON_CAUSAL context, n_batch = n_ubatch = 2048, one llama_decode per renderer block, slot-only logits)",
+  "build": "sh build_jev_score.sh /path/to/llama.cpp",
+  "protocol": "jev-score-v2",
+  "default_quant": "F16",
+  "n_ctx": 32768,
+  "n_ubatch": 2048,
+  "n_outputs_max": 512,
+  "kv_cache_type": "f16",
+  "threads": 8,
+  "flash_attn": "default = llama.cpp auto when layers run on a GPU backend (the parity-tested setting: CUDA, all layers on the GPU); off on the CPU fallback",
+  "temperature": "readout_config.json temperatures.by_qtype (choice / noul / score) unless overridden",
+  "score_many": "state blocks decoded once per request, each question on a seq_cp copy; last state kept for the next request (exact match)",
+  "not_supported": {
+   "--category": "no category / group temperatures (one per question type)",
+   "--head-max": "no question/options cap (32,768-token total budget only)",
+   "images": "text only: use the main repository's PyTorch runtime"
+  },
+  "model_check": "refuses GGUFs whose general.architecture / qwen35.block_count / qwen35.embedding_length / general.name differ (e.g. the 2B v3 and 0.8B v3 GGUFs)",
+  "scorer": {
+   "file": "jev_score_v2.cpp",
+   "sha256": "7d3ac0ba21b5451aee3fff179d2b8451a5a99dcc2df05425297808a7a4c8413b",
+   "note": "the 2B v3 scorer, unchanged apart from its header comments (same protocol jev-score-v2)"
+  }
+ },
+ "format_gates": {
+  "predeclared": {
+   "file": "validation/parity/PREDECLARED_RELEASE_GATES_2B_v4.md",
+   "sha256": "cb84de76f5a123a0ae63c130c89f2ce7b8ab6ff5ca17633b0ea9479ddfeff299",
+   "declared": "2026-10-28 00:10 AEDT (fixture sha256 corrected 00:13, before any scoring)"
+  },
+  "reference": "Reference scores for the v4 format gates (2026-10-28; Colab GPU): the main repository's reference scorer in float32\n(V4Engine loading path -> RendererV2 rows -> train.evaluate.score_rows, exact block attention) on the fixtures, plus\nthe two attention controls of the block-mask proof on the base fixture (same weights, rows and readout; only the\nfull-attention layers' mask changes):",
+  "reference_runtime": {
+   "tf32": {
+    "matmul": false,
+    "cudnn": false
+   },
+   "versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "5.17.0",
+    "cuda": "13.0",
+    "gpu": "NVIDIA L4"
+   },
+   "control_probe_max_abs_dscore": {
+    "causal": 1.0815367698669434,
+    "prefix_causal": 1.1920242309570312
+   }
+  },
+  "fixtures": {
+   "gate_fixture_n1000.jsonl": {
+    "sha256": "0b497f05d34500a2b1244147d553716c4db8ce0dbcdf5f5067bf2319204a9345",
+    "requests": 1000,
+    "questions": 1000,
+    "tokens": 516376,
+    "max_tokens": 3942,
+    "catalogue_overflow": 0,
+    "max_options": 151,
+    "qtypes": {
+     "choice": 645,
+     "noul": 316,
+     "score": 39
+    }
+   },
+   "base_fixture.jsonl": {
+    "sha256": "e3ba04f6f3f62b6b29fa380c7fb3463cdd28e7652f988433e182e2cb5b4c9488",
+    "requests": 70,
+    "questions": 97,
+    "tokens": 1383602,
+    "max_tokens": 32768,
+    "catalogue_overflow": 15,
+    "max_options": 255,
+    "qtypes": {
+     "choice": 71,
+     "noul": 24,
+     "score": 2
+    },
+    "kinds": {
+     "dev_long": 60,
+     "edge": 10
+    },
+    "edge": [
+     "k255_catalogue",
+     "question_block_2048",
+     "question_block_2049_catalogue",
+     "state_2048",
+     "state_2049",
+     "total_32768",
+     "five_shapes_one_state",
+     "special_tokens_text",
+     "empty_state",
+     "json_state"
+    ]
+   }
+  },
+  "render_check": {
+   "fixtures": {
+    "gate_fixture_n1000.jsonl": {
+     "questions": 1000,
+     "tokens": 516376
+    },
+    "base_fixture.jsonl": {
+     "questions": 97,
+     "tokens": 1383602
+    }
+   },
+   "mismatches": [],
+   "ok": true
+  },
+  "formats": {
+   "gguf_f16": {
+    "verdict": "PASS",
+    "pass": true,
+    "checks": {
+     "render_identical": true,
+     "finite": true,
+     "state_reuse": true,
+     "top1": true,
+     "dnll": true,
+     "block_mask_proof": true
+    },
+    "gates": {
+     "top1_min": 0.99,
+     "dnll_abs_max": 0.02,
+     "proof": true
+    },
+    "values": {
+     "top1_agreement": 0.997,
+     "top1_flips": 3,
+     "dnll": -0.00013095824057224315,
+     "acc_ref": 0.844,
+     "acc_cand": 0.845,
+     "acc_drop_pp": -0.10000000000000009,
+     "max_abs_dp": 0.028711311770494213,
+     "base_top1_agreement": 1.0,
+     "base_max_abs_dp": 0.014195241365448086,
+     "proof_closer": "97/97",
+     "state_reuse_max_abs_dscore": 0.0
+    },
+    "records": [
+     "validation/parity/compare_gguf_f16_gate_vs_block.json",
+     "validation/parity/compare_gguf_f16_base_vs_block.json"
+    ]
+   },
+   "gguf_q8_0": {
+    "verdict": "PASS",
+    "pass": true,
+    "checks": {
+     "render_identical": true,
+     "finite": true,
+     "state_reuse": true,
+     "top1": true,
+     "dnll": true,
+     "acc_drop": true
+    },
+    "gates": {
+     "top1_min": 0.98,
+     "dnll_abs_max": 0.02,
+     "acc_drop_pp_max": 0.3
+    },
+    "values": {
+     "top1_agreement": 0.996,
+     "top1_flips": 4,
+     "dnll": 0.00032461780469411616,
+     "acc_ref": 0.844,
+     "acc_cand": 0.843,
+     "acc_drop_pp": 0.10000000000000009,
+     "max_abs_dp": 0.06211410122431826,
+     "base_top1_agreement": 1.0,
+     "base_max_abs_dp": 0.02647374156074267,
+     "proof_closer": "97/97",
+     "state_reuse_max_abs_dscore": 0.0
+    },
+    "records": [
+     "validation/parity/compare_gguf_q8_0_gate_vs_block.json",
+     "validation/parity/compare_gguf_q8_0_base_vs_block.json"
+    ]
+   },
+   "gguf_q4_k_m": {
+    "verdict": "PASS",
+    "pass": true,
+    "checks": {
+     "render_identical": true,
+     "finite": true,
+     "state_reuse": true,
+     "acc_drop": true
+    },
+    "gates": {
+     "acc_drop_pp_max": 1.0
+    },
+    "values": {
+     "top1_agreement": 0.974,
+     "top1_flips": 26,
+     "dnll": 0.0009087860597859487,
+     "acc_ref": 0.844,
+     "acc_cand": 0.836,
+     "acc_drop_pp": 0.8000000000000007,
+     "max_abs_dp": 0.32098603459641517,
+     "base_top1_agreement": 0.979381443298969,
+     "base_max_abs_dp": 0.2784690702973664,
+     "proof_closer": "88/97",
+     "state_reuse_max_abs_dscore": 0.0
+    },
+    "records": [
+     "validation/parity/compare_gguf_q4_k_m_gate_vs_block.json",
+     "validation/parity/compare_gguf_q4_k_m_base_vs_block.json"
+    ]
+   }
+  }
+ },
+ "runtime_parity": {
+  "state_reuse": {
+   "gguf_f16": 0.0,
+   "gguf_q8_0": 0.0,
+   "gguf_q4_k_m": 0.0
+  },
+  "reused_state_identical": {
+   "gguf_f16": true,
+   "gguf_q8_0": true,
+   "gguf_q4_k_m": true
+  },
+  "vocab_check": {
+   "checked": 21,
+   "n_vocab_gguf": 248320
+  },
+  "scorer_ready": {
+   "attention_type": "non_causal",
+   "cache_type": "f16",
+   "desc": "qwen35 2B F16",
+   "flash_attn": "auto",
+   "gpu_offload": true,
+   "load_ms": 1965.826384,
+   "n_batch": 2048,
+   "n_ctx": 32768,
+   "n_outputs_max": 512,
+   "n_seq_max": 2,
+   "n_threads": 8,
+   "n_ubatch": 2048,
+   "n_vocab": 248320,
+   "ngl": 999,
+   "protocol": "jev-score-v2",
+   "ready": true,
+   "system_info": "CUDA : ARCHS = 890 | USE_GRAPHS = 1 | FA_QUANTS = q4_0-q4_0,q8_0-q8_0,f16-f16,bf16-bf16 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VNNI = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | "
+  }
+ },
+ "latency_l4": {
+  "what": "wall time of one runtime call during the fixture run (Colab NVIDIA L4, CUDA, all layers on the GPU, flash attention default; nothing else on the GPU); 'state already computed' = the same request again with the state cached in jev-score-v2",
+  "gguf_f16": {
+   "gate 1-1024 tokens": {
+    "n": 871,
+    "median_ms": 58.0,
+    "p90_ms": 103.9,
+    "max_ms": 348.6
+   },
+   "gate 1025-4096 tokens": {
+    "n": 129,
+    "median_ms": 198.8,
+    "p90_ms": 361.0,
+    "max_ms": 518.4
+   },
+   "base 4097-16384 tokens, one question": {
+    "n": 19,
+    "median_ms": 643.3,
+    "p90_ms": 1737.3,
+    "max_ms": 2028.1
+   },
+   "base 16385-32768 tokens, one question": {
+    "n": 25,
+    "median_ms": 3012.4,
+    "p90_ms": 4274.6,
+    "max_ms": 4862.9
+   },
+   "base 16385-32768 tokens, one question, state already computed (same request again)": {
+    "n": 25,
+    "median_ms": 53.9,
+    "p90_ms": 59.0,
+    "max_ms": 70.2
+   }
+  },
+  "gguf_q8_0": {
+   "gate 1-1024 tokens": {
+    "n": 871,
+    "median_ms": 50.0,
+    "p90_ms": 100.4,
+    "max_ms": 225.3
+   },
+   "gate 1025-4096 tokens": {
+    "n": 129,
+    "median_ms": 187.8,
+    "p90_ms": 350.9,
+    "max_ms": 497.6
+   },
+   "base 4097-16384 tokens, one question": {
+    "n": 19,
+    "median_ms": 600.4,
+    "p90_ms": 1657.2,
+    "max_ms": 1891.8
+   },
+   "base 16385-32768 tokens, one question": {
+    "n": 25,
+    "median_ms": 2816.0,
+    "p90_ms": 3993.5,
+    "max_ms": 4533.2
+   },
+   "base 16385-32768 tokens, one question, state already computed (same request again)": {
+    "n": 25,
+    "median_ms": 46.9,
+    "p90_ms": 51.9,
+    "max_ms": 62.2
+   }
+  },
+  "gguf_q4_k_m": {
+   "gate 1-1024 tokens": {
+    "n": 871,
+    "median_ms": 47.8,
+    "p90_ms": 101.8,
+    "max_ms": 229.4
+   },
+   "gate 1025-4096 tokens": {
+    "n": 129,
+    "median_ms": 195.2,
+    "p90_ms": 361.6,
+    "max_ms": 515.8
+   },
+   "base 4097-16384 tokens, one question": {
+    "n": 19,
+    "median_ms": 619.1,
+    "p90_ms": 1703.4,
+    "max_ms": 1959.3
+   },
+   "base 16385-32768 tokens, one question": {
+    "n": 25,
+    "median_ms": 2900.0,
+    "p90_ms": 4103.3,
+    "max_ms": 4649.0
+   },
+   "base 16385-32768 tokens, one question, state already computed (same request again)": {
+    "n": 25,
+    "median_ms": 45.0,
+    "p90_ms": 49.9,
+    "max_ms": 60.4
+   }
+  }
+ },
+ "decision_index": "not run with these files; the main repository's Decision Index numbers come from its PyTorch runtime (bfloat16)"
+}

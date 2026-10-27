@@ -1,0 +1,106 @@
+{
+ "format": "jev-style-manifest-v1",
+ "repo": "chaoliangUNSW/Jev-Style-2B-Decision-v4-GGUF",
+ "created_unix": 1793114287.8119922,
+ "files": {
+  "Jev-Style-2B-Decision-v4-F16.gguf": {
+   "sha256": "4a46e4a6c349895cda35d74ff50ba02dd1f292e74fe2ed8627a6fda08a45b93d",
+   "bytes": 3775708640
+  },
+  "Jev-Style-2B-Decision-v4-Q4_K_M.gguf": {
+   "sha256": "01a0fd7feb3d456503965ac6058180e8004e3cb71a17907f3f05d80abbe50c5e",
+   "bytes": 1274396128
+  },
+  "Jev-Style-2B-Decision-v4-Q8_0.gguf": {
+   "sha256": "a7090ee8be312205a7f98236a12be9b94362e89c004ce7d01d3507fe82179847",
+   "bytes": 2012012000
+  },
+  "LICENSE": {
+   "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+   "bytes": 11544
+  },
+  "NOTICE": {
+   "sha256": "623718acb37da57e4b4c90211e0241fdbc610b8b267ee0803401dfb76bd85dbc",
+   "bytes": 3538
+  },
+  "README.md": {
+   "sha256": "a43df574ba35f4f07b4de31f67e6b305106519d077de78a90e2cbe9b57dafc9f",
+   "bytes": 13689
+  },
+  "build_jev_score.sh": {
+   "sha256": "7e03b70ad55aa4907926aae1a15519f41214bb13a50c418ad8f9f00db469f532",
+   "bytes": 2437
+  },
+  "jev_score_v2.cpp": {
+   "sha256": "7d3ac0ba21b5451aee3fff179d2b8451a5a99dcc2df05425297808a7a4c8413b",
+   "bytes": 18208
+  },
+  "jev_style_decision_gguf.py": {
+   "sha256": "f82bdf627485af120f4fba4a705ed611b0313b03226c63aa4cc9eed9522a6a21",
+   "bytes": 43935
+  },
+  "readout_config.json": {
+   "sha256": "5772ba8076f124f0c1b5b153aabe4a5dcb16f089b227e3d3b3e3873ae0fa4f72",
+   "bytes": 2491
+  },
+  "release_config.json": {
+   "sha256": "4883daa83f2cb038f6ede1c3127a406a8a7bda8145c37f8b7dd82456a267c1c4",
+   "bytes": 16071
+  },
+  "requirements.txt": {
+   "sha256": "5ead29afdb1e605d5bf8915f36bbf54fc43c772688a662d8a4dc41742bd83c86",
+   "bytes": 232
+  },
+  "tokenizer/tokenizer.json": {
+   "sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+   "bytes": 19989325
+  },
+  "tokenizer/tokenizer_config.json": {
+   "sha256": "bee8eba30f0eb4af73c0fe2cd06d0f89b657d7819941c438157ec42f7c80ea87",
+   "bytes": 1123
+  },
+  "validation/fixtures.json": {
+   "sha256": "1acd37e138e4882c6099e3b88d57f46b47dd508fa737d1f6ca9e0f3199eab6f5",
+   "bytes": 1377
+  },
+  "validation/parity/PREDECLARED_RELEASE_GATES_2B_v4.md": {
+   "sha256": "cb84de76f5a123a0ae63c130c89f2ce7b8ab6ff5ca17633b0ea9479ddfeff299",
+   "bytes": 4892
+  },
+  "validation/parity/compare_gguf_f16_base_vs_block.json": {
+   "sha256": "936915d8356cc66142c6d086f9e7df09984ed19963493a0a56f0a40590b5bf15",
+   "bytes": 3285
+  },
+  "validation/parity/compare_gguf_f16_gate_vs_block.json": {
+   "sha256": "e619a0b4abf53e5692db9d5704866a4b1d7aa609bd465e2f4881333161e9c5cc",
+   "bytes": 2531
+  },
+  "validation/parity/compare_gguf_q4_k_m_base_vs_block.json": {
+   "sha256": "cda0a1f922baa28c7ae97fa5da344b85590ccd2b232ed9993c2929dbe775432a",
+   "bytes": 3294
+  },
+  "validation/parity/compare_gguf_q4_k_m_gate_vs_block.json": {
+   "sha256": "077d66fbd19c77b052960d2713d56519de135ce9f716b765dfc08c6c17737d73",
+   "bytes": 2532
+  },
+  "validation/parity/compare_gguf_q8_0_base_vs_block.json": {
+   "sha256": "bafe39176fb576c86cd50b47960298ad0524f5247fa0413486495cedd6bcae85",
+   "bytes": 3288
+  },
+  "validation/parity/compare_gguf_q8_0_gate_vs_block.json": {
+   "sha256": "673de835caaff15d347983098df41bd3fb74746d3507690dbab61eb548c8fc6d",
+   "bytes": 2549
+  },
+  "validation/parity/cross_format_dp.json": {
+   "sha256": "32bbfbc41b4284153ab81ffd562fde547c3113739256956fd5bff6e3308d4794",
+   "bytes": 1400
+  },
+  "validation/runtime/render_check.json": {
+   "sha256": "78fb238415ada197db67644e3332a7560c7b27586ed1406c577331e0f51ce117",
+   "bytes": 1036
+  }
+ },
+ "readme_hashed": true,
+ "readme_placeholder": false,
+ "note": "manifest.json hashes every file of the repo except itself, README.md included. The runtime --verify check skips the documentation and evaluation records (README.md, figures/, assets/, validation/, eval_results.json) and checks every other listed file it needs."
+}
