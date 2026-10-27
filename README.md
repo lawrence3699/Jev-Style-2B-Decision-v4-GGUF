@@ -171,6 +171,27 @@ print([r["answer"] for r in many])                       # ['false', 'report']
 - The input format, block attention and the readout are described on the
   [main card](https://huggingface.co/chaoliangUNSW/Jev-Style-2B-Decision-v4#input-format-and-readout).
 
+### With the jev-style package
+
+[jev-style](https://github.com/lawrence3699/jev-style) 0.6.0 or later downloads this repository at a pinned revision
+and runs this runtime behind a local systemone-compatible API, with a Playground, demos and MCP tools. It uses the
+`jev-score-v2` binary built above:
+
+```bash
+pip install jev-style
+jev-style serve --release 2b-v4 --backend gguf --quant Q8_0 --scorer /absolute/path/to/build/jev-score-v2
+```
+
+```python
+from jev_style import JevStyle, noul
+
+js = JevStyle.from_pretrained("chaoliangUNSW/Jev-Style-2B-Decision-v4-GGUF", quant="Q8_0",
+                              scorer="/absolute/path/to/build/jev-score-v2")
+out = js.decide({"app": "Calendar", "event": "Team sync", "start": "2026-10-02 15:00", "invitees": 14, "accepted": 3},
+                {"low": noul("Is attendance for this meeting likely to be low?")})
+out["answers"]["low"]["noul"]        # 0.906, as with the command line above
+```
+
 ## Scope and limits
 
 - **Runtime required.** Stock llama.cpp, Ollama and LM Studio can load these files but cannot produce the decision
